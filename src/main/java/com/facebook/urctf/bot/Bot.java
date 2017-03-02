@@ -30,12 +30,12 @@ public class Bot implements BotInterface {
                 enemyArmySize ++;
             if (c.getTeam() == myTeam)
                 myArmySize ++;
+
         }
+
 
         //Simple strategy: parachute 1 soldier at an empty tile far from us and the enemy, and expand to all directions.
         //Expand every square equally to cover as much area as possible, leaving 1 unit behind
-
-
 
 
 
@@ -59,6 +59,36 @@ public class Bot implements BotInterface {
     public static void main(String[] args) {
         //System.out.println("hii");
     }
+
+
+    /**
+     * Evaluate an empty cell
+     * leads = spots dont belong no one.
+     * @param world
+     * @param c
+     * @return [number of leads, number of enemy cells around, total number of enemy soldiers]
+     */
+    public int[] evaluateCell(World world, Cell c) {
+        List<Cell> neighbors = world.getAdjCells(c);
+        int leads= 0;
+        int totalNumOfEnemies = 0;
+        int numOfEnemies = 0;
+        for(Cell cell : neighbors){
+            leads++;
+            if ((cell.terrain == Terrain.OBSTACLE)||(cell.team.equals(myTeam))){
+                leads--;
+            }
+            if (cell.team.equals(enemyTeam)){
+                numOfEnemies++;
+                totalNumOfEnemies +=cell.armySize;
+            }
+        }
+        return(new int[]{leads, numOfEnemies, totalNumOfEnemies});
+    }
 }
+
+
+
+
 
 
