@@ -45,8 +45,7 @@ public class Bot implements BotInterface {
         return new Move(reinforcements, actions);
     }
 
-    private void init(World world)
-    {
+    private void init(World world) {
         myTeam = world.getMyTeam();
         enemyTeam = world.getEnemyTeam();
         List<Cell> allCells = world.getAllCells();
@@ -54,10 +53,6 @@ public class Bot implements BotInterface {
         for (Cell c : allCells)
             if (c.getTerrain() == Terrain.OBSTACLE)
                 obstacles[c.x][c.y] = true;
-    }
-
-    public static void main(String[] args) {
-        //System.out.println("hii");
     }
 }
 
