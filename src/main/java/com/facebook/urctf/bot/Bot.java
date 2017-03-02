@@ -9,6 +9,7 @@ public class Bot implements BotInterface {
     public Move getMoveForTurn(int numTurn, int reinforcementCount, World world) {
         return new Move();
     }
+
     public static void main(String[] args){
         System.out.println("hii");
     }
